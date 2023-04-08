@@ -13,13 +13,35 @@ button.addEventListener("click", function(){
 const dayValue = dayInput.value;
 const monthValue = monthInput.value;
 const yearValue = yearInput.value;
+const allInputs = [dayInput, monthInput, yearInput]; 
+//error
+//if (!dayValue || !monthValue )
 //subtracting moment js to get results
-let age = moment().subtract({ days:dayValue, months: monthValue, years: yearValue})
+for (let i = 0; i < allInputs.length; i++){
+    if (!allInputs[i].value.length){
+        allInputs[i].classList.remove("required")
+       allInputs[i].parentNode.empty()
+    }
+}
+
+if(dayValue && monthValue && yearValue){
+
+let age = moment().subtract({ days:dayValue, months: monthValue, years: yearValue});
 console.log(age.format("D, M , YY"))
 //changing dom to display resulte
 years.textContent = age.format("YY");
 months.textContent = age.format("M");
 days.textContent = age.format("D");
+}else{
+    for (let i = 0; i < allInputs.length; i++){
+        if (!allInputs[i].value.length){
+            allInputs[i].classList.add("required")
+           allInputs[i].parentNode.append("required")
+        }
+    }
+}
+//styling invalid input
 
 })
+
 

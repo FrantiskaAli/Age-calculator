@@ -15,26 +15,34 @@
   </style>
 </head>
 <body>
+  <main>
+    <section id="inputs">
+      <article >
   <label for="day">Day</label>
-  <input type="text" placeholder="DD" id="day" maxlength="2" />
-
+  <input type="number" placeholder="DD" id="day" maxlength="2" required />
+</article>
+<article>
   <label for="month">Month</label>
-  <input type="text" placeholder="MM" id="month" maxlength="2" />
-  
+  <input type="number" placeholder="MM" id="month" maxlength="2" required />
+</article>
+<article>
   <label for="year">Year</label>
-  <input type="text" placeholder="YYYY" id="year" maxlength="4"/>
-<hr /><button id="result">button</button>
+  <input type="number" placeholder="YYYY" id="year" maxlength="4" required/>
+</article>
+</section>
+<hr /><button id="result"></button>
 
 <section>
 
-<h2><span id="years">--</span> years</h2>
- <h2><span id="months">--</span> months</h2>
-  <h2><span id="days">--</span> days</h2>
+<h2><span id="years" class="purple">--</span> years</h2>
+ <h2><span id="months" class="purple">--</span> months</h2>
+  <h2><span id="days" class="purple">--</span> days</h2>
 </section>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
   </div>
+  </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
   <script src="./script.js"></script>
 </body>
