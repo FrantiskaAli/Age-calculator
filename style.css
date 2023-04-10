@@ -36,11 +36,18 @@ main{
 }
 label{
     display:block;
-    text-transform: uppercase;
     color:hsl(0, 1%, 44%);
     font-size: 0.7rem;
     font-weight: 50;
     padding-bottom:5%;
+}
+
+.required {
+    border-color:hsl(0, 100%, 67%);
+    color:hsl(0, 100%, 67%);
+}
+.error {
+    color:hsl(0, 100%, 67%);
 }
 input{
     width:70%;
@@ -48,13 +55,12 @@ input{
     border-radius:5px;
     border:1px solid hsl(0, 0%, 86%);
     font-weight: 900;
+    color:black !important;
 }
 input[type="number"]:focus {
     border: 1px solid hsl(0, 1%, 44%);
-    outline:none; 
-}
-.required {
-    border-color:red;
+    outline:none;
+    color:black !important;
 }
 button{
     float:right;
@@ -67,6 +73,13 @@ button{
     padding:5%;
     border-radius: 50%;
 }
+button:hover{
+    background-color:hsl(259, 100%, 65%);
+    outline:none;
+    border-color:hsl(259, 100%, 65%);
+    box-shadow:none;
+    cursor: pointer;
+}
 h2{
     font-size:3rem;
     font-weight: 900;
@@ -75,4 +88,7 @@ h2{
 }
 .purple{
     color:hsl(259, 100%, 65%);
+}
+.hide{
+    display: none;
 }
