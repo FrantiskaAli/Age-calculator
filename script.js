@@ -7,6 +7,7 @@ const days = document.getElementById("days")
 const months = document.getElementById("months")
 const years = document.getElementById("years")
 const error = document.getElementsByClassName("error")
+const required = document.getElementsByClassName("req")
 //function on  click
 button.addEventListener("click", function(){
 //getting values from the input
@@ -15,22 +16,14 @@ let monthValue = monthInput.value;
 let yearValue = yearInput.value;
 const allInputs = [dayInput, monthInput, yearInput]; 
 //error
-//subtracting moment js to get results
-validate()
-//validation
-if(validate()){
-    for (let i = 0; i < allInputs.length; i++){
+for (let i = 0; i < allInputs.length; i++){
     allInputs[i].classList.remove("required")
     allInputs[i].nextElementSibling.classList.add("hide")
     allInputs[i].previousElementSibling.classList.remove("error")}
+//subtracting moment js to get results
 
-let age = moment().subtract({ days:dayValue, months: monthValue, years: yearValue});
-console.log(age.format("D, M , YY"))
-//changing dom to display results
-years.textContent = age.format("YY");
-months.textContent = age.format("M");
-days.textContent = age.format("D");
-}else{
+//validation
+if(!dayValue || !monthValue || !yearValue){
     for (let i = 0; i < allInputs.length; i++){
         if (!allInputs[i].value.length){
             allInputs[i].classList.add("required")
@@ -38,34 +31,48 @@ days.textContent = age.format("D");
             allInputs[i].previousElementSibling.classList.add("error")
         }
     }
+}else if(validate()){
+  
+let age = moment().subtract({ days:dayValue, months: monthValue, years: yearValue});
+console.log(age.format("D, M , YY"))
+//changing dom to display results
+years.textContent = age.format("YY");
+months.textContent = age.format("M");
+days.textContent = age.format("D");
 }
 //styling invalid input
-function validate(){
-    let valid = 0
-     for (let i = 0; i < allInputs.length; i++){
-        if (dayValue > 31){
-            dayInput.classList.add("required")
-            dayInput.nextElementSibling.classList.remove("hide")
-            dayInput.previousElementSibling.classList.add("error")
-            valid++
-        }
-        if (monthValue > 12){
-            monthInput.classList.add("required")
-            monthInput.nextElementSibling.classList.remove("hide")
-            monthInput.previousElementSibling.classList.add("error")
-            valid++
-        }
-        if (yearValue > 2023){
-            yearInput.classList.add("required")
-            yearInput.nextElementSibling.classList.remove("hide")
-            yearInput.previousElementSibling.classList.add("error")
-            valid++
-        }
+function validate() {
+    let valid = 0;
+    for (let i = 0; i < allInputs.length; i++) {
+      const inputValue = allInputs[i].value;
+    if (inputValue > 31 && allInputs[i] === dayInput) {
+        allInputs[i].classList.add("required");
+        allInputs[i].nextElementSibling.classList.remove("hide");
+        allInputs[i].previousElementSibling.classList.add("error");
+        allInputs[i].nextElementSibling.textContent = "Must be a valid day";
+        valid++;
+      } else if (inputValue > 12 && allInputs[i] === monthInput) {
+        allInputs[i].classList.add("required");
+        allInputs[i].nextElementSibling.classList.remove("hide");
+        allInputs[i].previousElementSibling.classList.add("error");
+        allInputs[i].nextElementSibling.textContent = "Must be valid month";
+        valid++;
+      } else if (inputValue > 2023 && allInputs[i] === yearInput) {
+        allInputs[i].classList.add("required");
+        allInputs[i].nextElementSibling.classList.remove("hide");
+        allInputs[i].previousElementSibling.classList.add("error");
+        allInputs[i].nextElementSibling.textContent = "Must be in the past";
+        valid++;
+      }
     }
-    if (valid > 0){
-        return false
-    } else {return true}
-}
+    if (valid > 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
+  
 })
 
 
